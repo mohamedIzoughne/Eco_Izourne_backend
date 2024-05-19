@@ -2,7 +2,6 @@ const Product = require('../models/product')
 async function addProduct(req, res, next) {
   const { title, description, price, category, state, brand } = req.body
   const parsedCategory = JSON.parse(category)
-
   let imageURL = req.files[0]?.path
   if (!imageURL) {
     imageURL = '/images/default.png'

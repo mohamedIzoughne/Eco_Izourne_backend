@@ -43,10 +43,12 @@ app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array('imageURl')
 )
 app.use(cors())
-
-app.use('/', productRoutes)
+// {
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+// }
 // app.use('/payment', paymentRoutes)
 app.use('/admin', adminRoutes)
+app.use('/', productRoutes)
 
 app.use((error, req, res, next) => {
   const message = error.message

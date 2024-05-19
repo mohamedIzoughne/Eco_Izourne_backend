@@ -133,3 +133,4 @@ dist
 .env
 node_modules
 >>>>>>> master
+images/
