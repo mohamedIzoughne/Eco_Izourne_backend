@@ -43,11 +43,7 @@ app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array('imageURl')
 )
 
-app.use(
-  cors({
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  })
-)
+app.use(cors())
 
 // app.use('/payment', paymentRoutes)
 app.use('/admin', adminRoutes)
@@ -71,3 +67,5 @@ mongoose
   .catch((err) => {
     console.log(err)
   })
+
+module.exports = app
