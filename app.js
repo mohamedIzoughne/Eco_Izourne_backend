@@ -37,14 +37,28 @@ const fileStorage = multer.diskStorage({
   },
 })
 
-// app.use(express.json({ limit: '2mb' }))
-app.use(express.json())
+app.use(express.json({ limit: '10mb' }))
 app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array('imageURl')
 )
 
-app.use(cors())
+app.use(
+  cors()
+)
+app.use((req, res, next) => {
+  // cors
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+  )
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  // caching
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate')
+  next()
+})
+
 
 // app.use('/payment', paymentRoutes)
 app.use('/admin', adminRoutes)
@@ -68,5 +82,3 @@ mongoose
   .catch((err) => {
     console.log(err)
   })
-
-module.exports = app
