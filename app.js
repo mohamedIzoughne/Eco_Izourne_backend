@@ -37,7 +37,8 @@ const fileStorage = multer.diskStorage({
   },
 })
 
-app.use(express.json({ limit: '2mb' }))
+// app.use(express.json({ limit: '2mb' }))
+app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array('imageURl')
