@@ -43,22 +43,7 @@ app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array('imageURl')
 )
 
-app.use(
-  cors()
-)
-app.use((req, res, next) => {
-  // cors
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, PUT, PATCH, DELETE, OPTIONS'
-  )
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  // caching
-  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate')
-  next()
-})
-
+app.use(cors())
 
 // app.use('/payment', paymentRoutes)
 app.use('/admin', adminRoutes)
