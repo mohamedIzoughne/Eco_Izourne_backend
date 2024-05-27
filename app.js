@@ -9,6 +9,7 @@ const adminRoutes = require('./routes/admin')
 const multer = require('multer')
 const path = require('path')
 dotenv.config()
+app.use(cors())
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = [
@@ -42,8 +43,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array('imageURl')
 )
-
-app.use(cors())
 
 // app.use('/payment', paymentRoutes)
 app.use('/admin', adminRoutes)
