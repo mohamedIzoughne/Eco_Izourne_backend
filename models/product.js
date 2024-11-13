@@ -38,4 +38,9 @@ const productSchema = mongoose.Schema({
   },
 })
 
+productSchema.index({ title: 'text', description: 'text' })
+productSchema.index({ price: 1 })
+productSchema.index({ 'category.name': 1 })
+productSchema.index({ brand: 1 })
+
 module.exports = mongoose.model('Product', productSchema)
